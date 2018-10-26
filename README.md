@@ -1,27 +1,39 @@
 # SimonSaysFU
 
-Trabajo final de la materia Taller II, segundo año, de la carrera Técnoico superior en análisis de sistemas, IFTS 16.
-Consigna: 
+Trabajo final de la materia Taller II, segundo año, de la carrera Técnico superior en análisis de sistemas, IFTS 16.
+
+Consigna:
 
 Cronograma / Piezas Entregables:
 --------------------------------------
 
-Documentación de Aplicación:
-Introducción
-Definición/descripción del Usuario
-Uso
-Alcances de la versión 0.0 / MVP (Producto Mínimo Viable)
-Diseño:
-Componentes
-Store
-Flujo de Datos
-Wireframe
-Código Fuente
+* Documentación de Aplicación:
 
-Repositorio en GitHub
-Aplicación
+    Introducción.
 
-Deployar en plataforma Now
+    Definición/descripción del Usuario.
+
+    Uso.
+
+    Alcances de la versión 0.0 / MVP (Producto Mínimo Viable).
+
+* Diseño:
+
+    Componentes
+
+    Store
+
+    Flujo de Datos
+
+    Wireframe
+
+* Código Fuente
+
+    Repositorio en GitHub
+
+* Aplicación
+
+    Deployar en plataforma Now
 
 
 OPCIONES:
@@ -41,7 +53,7 @@ A partir de un mapa (Google Maps u otro) el usuario podrá seleccionar puntos y 
 
 🕹️SIMON DICE
 
-Desarrollar el clásico juego Simón Dice (también conocido como Simon Says).
+Desarrollar el clásico juego Simón Dice (también conocido como Simon Says).   
 
 
 Requerimientos / Condiciones:
