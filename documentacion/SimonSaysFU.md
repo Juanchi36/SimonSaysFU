@@ -25,6 +25,6 @@ anunciará por pantalla.
 
 4.- Alcance.
 	
-Simon Says Fuck You será es aplicación web que puede correr en cualquier navegador en todo tipo de dispositivos,
+Simon Says Fuck You es una aplicación web que puede correr en cualquier navegador en todo tipo de dispositivos,
 está desarrollada en idioma español y es de uso totalmente gratuito. 
 	
