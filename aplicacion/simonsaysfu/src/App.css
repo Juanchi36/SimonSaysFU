@@ -30,21 +30,6 @@
 		transform: rotate(360deg);
 	}
 }
-.container {
-	display: inline-flex;
-	margin-top: 20px;
-	flex-wrap: wrap;
-	padding: 50px;
-	justify-content: center;
-	margin: 0 50px;
-}
-.simon {
-	width: 40% !important;
-}
-.chatbot {
-	width: 50% !important;
-	margin-top: 17px;
-}
-img {
-	width: 100%;
+#user-name {
+	font-weight: bolder !important;
 }
