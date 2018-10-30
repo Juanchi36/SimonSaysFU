@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import UserNav from './UserNav';
 import { store } from '../store';
+import SimonGame from './SimonGame';
 
 class App extends Component {
 	componentWillMount () {
@@ -18,6 +19,7 @@ class App extends Component {
 		return (
 			<div>
 				<UserNav />
+				<SimonGame />
 			</div>
 		);
 	}
