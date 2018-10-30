@@ -220,20 +220,22 @@ class SimonGame extends Component {
 
 		console.log(state);
 		return (
-			<div className={'flex-container'}>
-				<Color1 name='colors t-l' id='tile0' clickable={state.clickable} />
-				<Color2 name='colors t-r' id='tile1' clickable={state.clickable} />
-				<Color3 name='colors b-l' id='tile2' clickable={state.clickable} />
-				<Color4 name='colors b-r' id='tile3' clickable={state.clickable} />
-				<Control
-					name='center'
-					series={state.series}
-					lightUp={state.lightUp}
-					turn={state.turn}
-					status={state.status}
-					partialSeries={state.partialSeries}
-					mode={state.strictMode}
-				/>
+			<div className='simon-container'>
+				<div className={'flex-container'}>
+					<Color1 name='colors t-l' id='tile0' clickable={state.clickable} />
+					<Color2 name='colors t-r' id='tile1' clickable={state.clickable} />
+					<Color3 name='colors b-l' id='tile2' clickable={state.clickable} />
+					<Color4 name='colors b-r' id='tile3' clickable={state.clickable} />
+					<Control
+						name='center'
+						series={state.series}
+						lightUp={state.lightUp}
+						turn={state.turn}
+						status={state.status}
+						partialSeries={state.partialSeries}
+						mode={state.strictMode}
+					/>
+				</div>
 			</div>
 		);
 	}
@@ -283,7 +285,7 @@ class Control extends Component {
 
 		return (
 			<div className={this.props.name}>
-				<h2 style={{ marginTop: 10 }}>Simon Game</h2>
+				<h2 style={{ marginTop: 10 }}>Simon® </h2>
 				<div>
 					<h1 className='count' style={{ float: 'left' }}>
 						{this.props.partialSeries.length}
@@ -298,7 +300,7 @@ class Control extends Component {
 							)
 						}
 						onClick={this.props.status == 'Beginning' ? this.startGame : null}
-						style={{ float: 'left', marginRight: -15 }}
+						style={{ float: 'left', marginRight: 6 }}
 					>
 						{' '}
 						Start{' '}

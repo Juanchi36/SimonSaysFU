@@ -1,16 +1,24 @@
+.simon-container {
+	display: flex;
+	width: 370px;
+	position: relative;
+	margin: 20px;
+}
 .flex-container {
 	margin: 20px 0 0 20px;
 	display: flex;
 	width: 500px;
-	height: 500px;
+	/* height: 500px; */
 	background: #fff;
 	flex-wrap: wrap;
 }
 
 .colors {
-	margin: auto;
-	height: 240px;
-	width: 240px;
+	margin: 6px;
+	height: 150px;
+	width: 150px;
+	/* position: absolute; */
+	z-index: 50;
 }
 
 .t-l {
@@ -26,19 +34,20 @@
 	border-bottom-left-radius: 100%;
 }
 .b-r {
-	background: #00ccff;
+	background: #0d47a1;
 	border-bottom-right-radius: 100%;
 }
 
 .center {
 	position: absolute;
 	border-radius: 100%;
-	margin: 144px 0 0 139px;
+	margin: 60px 0 0 63px;
 	background: white;
-	width: 220px;
-	height: 220px;
+	width: 200px;
+	height: 200px;
 	border: 12px solid #fff;
 	text-align: center;
+	z-index: 100;
 }
 
 #container {
@@ -94,15 +103,20 @@ h2 {
 	font-size: 25px;
 }
 h5 {
-	font-size: 14px;
+	font-size: 10px;
 	margin: 0;
 }
 .alert {
 	text-align: center;
 }
 .btn {
-	padding: 0 18px;
+	padding: 0 9px;
 }
 #restart-btn {
 	margin-top: 5px !important;
+}
+@media only screen and (max-width: 1024px) {
+	h5 {
+		margin-left: 70px;
+	}
 }
