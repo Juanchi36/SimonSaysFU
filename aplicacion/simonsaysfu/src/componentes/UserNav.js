@@ -2,12 +2,22 @@ import React, { PureComponent } from 'react';
 import '../styles/Usernav.css';
 import { store } from '../store';
 import { boton, handleAuth, handleLogout } from '../actions';
+import firebase from 'firebase';
 
 class UserNav extends PureComponent {
 	constructor () {
 		super();
 		// re-renderiza el componente
 		store.subscribe(() => this.forceUpdate());
+	}
+	componentWillMount () {
+		firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+				store.update({ user: user });
+			} else {
+				store.update({ user: null });
+			}
+		});
 	}
 	renderUserData () {
 		// trae al objeto user del store

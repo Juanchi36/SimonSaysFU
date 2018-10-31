@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { createStore } from 'redux';
 import '../styles/SimonGame.css';
-var sound1 = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound1.mp3');
-var sound2 = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3');
-var sound3 = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3');
-var sound4 = new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3');
-var soundBoard = [ sound1, sound2, sound3, sound4 ];
+const sound1 = new Audio(
+	'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3'
+);
+const sound2 = new Audio(
+	'https://s3.amazonaws.com/freecodecamp/simonSound2.mp3'
+);
+const sound3 = new Audio(
+	'https://s3.amazonaws.com/freecodecamp/simonSound3.mp3'
+);
+const sound4 = new Audio(
+	'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3'
+);
+const soundBoard = [ sound1, sound2, sound3, sound4 ];
 
 //////////////////////////functions //////////////////////////////////////////
 
@@ -15,19 +23,18 @@ function getRandomIntInclusive (min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function getSeries () {
+export function getSeries () {
 	var series = [];
 	for (var i = 0; i < 24; i++) {
 		series[i] = getRandomIntInclusive(0, 3);
+		console.log(series[i]);
 	}
 	return series;
 }
 
-function lightUp (tile) {
+export function lightUp (tile) {
 	var toAnimate = document.getElementById('tile' + tile);
-	console.log(toAnimate);
 
-	//toAnimate.addClass('anim');
 	toAnimate.classList.add('anim');
 
 	soundBoard[tile].playbackRate = 0.7;
@@ -41,6 +48,7 @@ function lightUp (tile) {
 
 function checkEquality (partialSeries, lengthController, playerInput) {
 	//checkEquality(state.partialSeries, state.lengthController, state.playerInputs );
+	console.log(partialSeries[lengthController]);
 	return partialSeries[lengthController] == playerInput[lengthController]
 		? true
 		: false;
@@ -114,6 +122,7 @@ function reducer (state = initialStore, { type, payload }) {
 
 			//check condition for incrementing partialSeries
 			if (state.playerInputs.length == state.partialSeries.length && nextTurn) {
+				console.log(payload);
 				state.lightUp(payload);
 				let incremented = state.series.slice(0, state.playerInputs.length + 1);
 
@@ -218,7 +227,7 @@ class SimonGame extends Component {
 	render () {
 		let state = store.getState();
 
-		console.log(state);
+		//console.log(state);
 		return (
 			<div className='simon-container'>
 				<div className={'flex-container'}>
@@ -334,6 +343,8 @@ class Control extends Component {
 class Color1 extends Component {
 	onClick = () => {
 		if (this.props.clickable) {
+			//console.log(this.getState);
+			console.log('presionaron el color 1');
 			store.dispatch(updateInputs(0));
 		}
 	};
@@ -351,6 +362,7 @@ class Color1 extends Component {
 class Color2 extends Component {
 	onClick = (item) => {
 		if (this.props.clickable) {
+			console.log('presionaron el color 2');
 			store.dispatch(updateInputs(1));
 		}
 	};
@@ -369,6 +381,7 @@ class Color2 extends Component {
 class Color3 extends Component {
 	onClick = (item) => {
 		if (this.props.clickable) {
+			console.log('presionaron el color 3');
 			store.dispatch(updateInputs(2));
 		}
 	};
@@ -387,6 +400,7 @@ class Color3 extends Component {
 class Color4 extends Component {
 	onClick = (item) => {
 		if (this.props.clickable) {
+			console.log('presionaron el color 4');
 			store.dispatch(updateInputs(3));
 		}
 	};
