@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import '../styles/Usernav.css';
 import { store } from '../store';
-import { boton, handleAuth, handleLogout } from '../actions';
+import { handleAuth, handleLogout } from '../actions'; //borré boton
 import firebase from 'firebase';
 
 class UserNav extends PureComponent {
@@ -76,9 +76,9 @@ class UserNav extends PureComponent {
 
 					{user ? this.renderUserData() : this.renderLoginButton()}
 				</div>
-				<div>
+				{/* <div>
 					<button onClick={() => boton()} />
-				</div>
+				</div> */}
 			</nav>
 		);
 	}

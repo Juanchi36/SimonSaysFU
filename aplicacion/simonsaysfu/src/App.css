@@ -1,35 +1,64 @@
-.App {
+.dual {
+	display: inline-flex;
+	/* text-align: center;
+	align-items: center; */
+}
+.chatbot {
+	padding: 20px;
+}
+.chatbot h1 {
 	text-align: center;
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 
-.App-logo {
-	animation: App-logo-spin infinite 20s linear;
-	height: 40vmin;
+.chatbot .chat-window {
+	width: 550px;
+	margin: auto;
+	border: 1px solid #d5d5d5;
 }
 
-.App-header {
-	background-color: #282c34;
-	min-height: 100vh;
+.chatbot .conversation-view {
+	width: 100%;
+	min-height: 400px;
+	padding: 20px 40px;
+	background-color: #e5ddd5;
+}
+
+.chatbot .message-box {
+	width: 90%;
+	margin-left: 10px;
+}
+
+.chatbot .text-input {
+	width: 100%;
+	border: none;
+	padding: 5px;
+	margin-bottom: 7px;
+}
+
+.chatbot .chat-bubble {
+	font-size: 20px;
+	margin-bottom: 20px;
+	width: 100%;
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
+}
+
+.chatbot .chat-bubble.ai {
+	justify-content: flex-end;
+}
+
+.chatbot .chat-bubble.ai .chat-content {
+	background-color: #4c9689;
+}
+
+.chatbot .chat-content {
+	display: inline-block;
+	padding: 8px 15px;
+	background-color: #0747a7;
 	color: white;
+	border-radius: 10px;
 }
-
-.App-link {
-	color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
-}
-#user-name {
-	font-weight: bolder !important;
-}
+/* .text-input {
+	margin: 0 0 10px 0 !important;
+} */

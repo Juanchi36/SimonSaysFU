@@ -1,10 +1,10 @@
 import { store } from '../store';
 import firebase from 'firebase';
 
-export function boton () {
-	store.update({ appName: 'tu vieja' });
-	console.log(store.getState().appName);
-}
+// export function boton () {
+// 	store.update({ appName: 'tu vieja' });
+// 	console.log(store.getState().appName);
+// }
 
 export function handleAuth () {
 	const provider = new firebase.auth.GoogleAuthProvider();

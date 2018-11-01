@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/backendchatbot/node_modules
 
 # testing
 /coverage
@@ -23,3 +24,7 @@ yarn-error.log*
 # temp
 
 /src/componentes/workingSimon.js
+
+#env variables
+
+/src/variables.env
