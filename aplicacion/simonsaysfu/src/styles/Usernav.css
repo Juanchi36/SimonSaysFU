@@ -1,3 +1,6 @@
+.container {
+	text-align: -webkit-auto;
+}
 .user-name {
 	font-weight: 600;
 	margin: 0 20px 0 8px;

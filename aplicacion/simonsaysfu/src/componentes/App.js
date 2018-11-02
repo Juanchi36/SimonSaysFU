@@ -10,10 +10,10 @@ class App extends Component {
 			<div>
 				<UserNav />
 				<div className='dual'>
-					<div>
+					<div className='dual1'>
 						<SimonGame />
 					</div>
-					<div className='chatbot'>
+					<div className='dual2'>
 						<ChatBot />
 					</div>
 				</div>

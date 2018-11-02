@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Pusher from 'pusher-js';
-//import './App.css';
+import { store } from '../store';
+import CustomScroll from 'react-customscroll';
 
 class Chatbot extends Component {
 	constructor (props) {
@@ -58,12 +59,27 @@ class Chatbot extends Component {
 	};
 
 	render () {
+		const { user } = store.state;
 		const ChatBubble = (text, i, className) => {
-			return (
-				<div key={`${className}-${i}`} className={`${className} chat-bubble`}>
-					<span className='chat-content'>{text}</span>
-				</div>
-			);
+			if (user && className === 'human') {
+				return (
+					<div key={`${className}-${i}`} className={`${className} chat-bubble`}>
+						<img
+							width='32'
+							className='avatar circle responsive-img'
+							src={user.photoURL}
+							alt='user img'
+						/>
+						<span className='chat-content'>{text}</span>
+					</div>
+				);
+			} else {
+				return (
+					<div key={`${className}-${i}`} className={`${className} chat-bubble`}>
+						<span className='chat-content'>{text}</span>
+					</div>
+				);
+			}
 		};
 
 		const chat = this.state.conversation.map((e, index) =>
@@ -73,20 +89,23 @@ class Chatbot extends Component {
 		return (
 			<div>
 				{/* <h1>React Chatbot</h1> */}
+
 				<div className='chat-window'>
-					<div className='conversation-view'>{chat}</div>
-					<div className='message-box'>
-						<form onSubmit={this.handleSubmit}>
-							<input
-								value={this.state.userMessage}
-								onInput={this.handleChange}
-								className='text-input'
-								type='text'
-								autoFocus
-								placeholder='Type your message and hit Enter to send'
-							/>
-						</form>
-					</div>
+					<CustomScroll>
+						<div className='conversation-view'>{chat}</div>
+						<div className='message-box'>
+							<form onSubmit={this.handleSubmit}>
+								<input
+									value={this.state.userMessage}
+									onInput={this.handleChange}
+									className='text-input'
+									type='text'
+									autoFocus
+									placeholder='Ingrese el mensaje y presione enter'
+								/>
+							</form>
+						</div>
+					</CustomScroll>
 				</div>
 			</div>
 		);
