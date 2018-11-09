@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Pusher from 'pusher-js';
 import { store } from '../store';
-import CustomScroll from 'react-customscroll';
 
 class Chatbot extends Component {
 	constructor (props) {
@@ -10,6 +9,7 @@ class Chatbot extends Component {
 			userMessage: '',
 			conversation: []
 		};
+		this.scrollView = null;
 	}
 
 	componentDidMount () {
@@ -24,14 +24,21 @@ class Chatbot extends Component {
 				text: data.message,
 				user: 'ai'
 			};
-			this.setState({
-				conversation: [ ...this.state.conversation, msg ]
-			});
+			this.setState(
+				{
+					conversation: [ ...this.state.conversation, msg ]
+				},
+				this.scrollToLastThread
+			);
 		});
 	}
 
+	scrollToLastThread = () => {
+		this.scrollView.scrollTo(0, 99999999999);
+	};
+
 	handleChange = (event) => {
-		this.setState({ userMessage: event.target.value });
+		this.setState({ userMessage: event.target.value }, this.scrollToLastThread);
 	};
 
 	handleSubmit = (event) => {
@@ -91,21 +98,24 @@ class Chatbot extends Component {
 				{/* <h1>React Chatbot</h1> */}
 
 				<div className='chat-window'>
-					<CustomScroll>
-						<div className='conversation-view'>{chat}</div>
-						<div className='message-box'>
-							<form onSubmit={this.handleSubmit}>
-								<input
-									value={this.state.userMessage}
-									onInput={this.handleChange}
-									className='text-input'
-									type='text'
-									autoFocus
-									placeholder='Ingrese el mensaje y presione enter'
-								/>
-							</form>
-						</div>
-					</CustomScroll>
+					<div
+						ref={(view) => (this.scrollView = view)}
+						className='conversation-view'
+					>
+						{chat}
+					</div>
+					<div className='message-box'>
+						<form onSubmit={this.handleSubmit}>
+							<input
+								value={this.state.userMessage}
+								onInput={this.handleChange}
+								className='text-input'
+								type='text'
+								autoFocus
+								placeholder='Ingrese el mensaje y presione enter'
+							/>
+						</form>
+					</div>
 				</div>
 			</div>
 		);
