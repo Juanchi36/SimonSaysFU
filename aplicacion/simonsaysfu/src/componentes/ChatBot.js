@@ -10,6 +10,7 @@ class Chatbot extends Component {
 			conversation: []
 		};
 		this.scrollView = null;
+		//store.subscribe(() => this.forceUpdate());
 	}
 
 	componentDidMount () {
@@ -38,21 +39,31 @@ class Chatbot extends Component {
 	};
 
 	handleChange = (event) => {
-		this.setState({ userMessage: event.target.value }, this.scrollToLastThread);
+		this.setState({ userMessage: event.target.value });
 	};
 
 	handleSubmit = (event) => {
+		console.log(event);
 		event.preventDefault();
+
 		if (!this.state.userMessage.trim()) return;
 
 		const msg = {
 			text: this.state.userMessage,
 			user: 'human'
 		};
+		const { simonView } = store.state;
+		if (msg.text === 'quiero jugar por favor') {
+			store.update({ simonView: true });
+			console.log(simonView);
+		}
 
-		this.setState({
-			conversation: [ ...this.state.conversation, msg ]
-		});
+		this.setState(
+			{
+				conversation: [ ...this.state.conversation, msg ]
+			},
+			this.scrollToLastThread
+		);
 
 		fetch('http://localhost:5000/chat', {
 			method: 'POST',
@@ -66,7 +77,8 @@ class Chatbot extends Component {
 	};
 
 	render () {
-		const { user } = store.state;
+		const { user, mensajePerder } = store.state;
+		console.log(mensajePerder);
 		const ChatBubble = (text, i, className) => {
 			if (user && className === 'human') {
 				return (

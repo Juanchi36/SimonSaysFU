@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createStore } from 'redux';
 import '../styles/SimonGame.css';
+import { store } from '../store';
 const sound1 = new Audio(
 	'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3'
 );
@@ -139,10 +140,35 @@ function reducer (state = initialStore, { type, payload }) {
 				return { ...state };
 			} else if (!state.strictMode) {
 				alert('WrongInput, Here is the Sequence Again');
+				// var elJson = {
+				// 	event: { name: 'alerta_perder' },
+				// 	lang: 'Spanish — es',
+				// 	sessionId: 'agent.session'
+				// };
+				// fetch('https://api.dialogflow.com/api/query?v=20150910', {
+				// 	method: 'post',
+				// 	headers: {
+				// 		Accept: 'application/json',
+				// 		'Content-Type': 'application/json',
+				// 		Authorization: 'Bearer da8c3397c83148aab81f9920951379c0'
+				// 	},
+				// 	body: JSON.stringify(elJson)
+				// })
+				// 	.then((response) => {
+				// 		return response.json();
+				// 	})
+				// 	.then((data) => {
+				// 		console.log('Objeto posteado:', data);
+				// 	})
+				// 	.catch((error) => {
+				// 		console.log(error, 'catch the hoop');
+				// 	});
+				store.update({ mensajePerder: 'perdi' });
 				//we use 'NextSeq' to play our sequence again
 				return { ...state, turn: 'PlaySeq', playerInputs: [] };
 			} else {
 				alert('WrongInput, Strict Mode Will Reset Everything');
+				store.update({ mensajePerder: 'perdi' });
 				//we reset everithing back to origin
 				return {
 					...initialStore,
@@ -210,11 +236,11 @@ function restart () {
 
 //////////////////////////////////////////////////////////////////
 
-const store = createStore(reducer);
+const store2 = createStore(reducer);
 
 class SimonGame extends Component {
 	componentDidMount () {
-		this.unsubscribe = store.subscribe(() =>
+		this.unsubscribe = store2.subscribe(() =>
 			//each time the store will update we will rerender
 			this.forceUpdate()
 		);
@@ -225,7 +251,7 @@ class SimonGame extends Component {
 	}
 
 	render () {
-		let state = store.getState();
+		let state = store2.getState();
 
 		//console.log(state);
 		return (
@@ -258,17 +284,17 @@ class Control extends Component {
 		this.playSeq(first);
 
 		//disables clicking on button and on colors
-		store.dispatch(start());
+		store2.dispatch(start());
 		//assign the partialSeries the first time we press the button
-		store.dispatch(partialS(first));
+		store2.dispatch(partialS(first));
 	};
 
 	toggle = () => {
-		store.dispatch(toggleStrict());
+		store2.dispatch(toggleStrict());
 	};
 
 	restart = () => {
-		store.dispatch(restart());
+		store2.dispatch(restart());
 	};
 
 	playSeq = (sequence) => {
@@ -278,8 +304,8 @@ class Control extends Component {
 			i++;
 			if (i >= sequence.length) {
 				clearInterval(interval);
-				store.dispatch(changeTurnToPlayer());
-				store.dispatch(updateController());
+				store2.dispatch(changeTurnToPlayer());
+				store2.dispatch(updateController());
 			}
 		}, 1200);
 	};
@@ -345,7 +371,7 @@ class Color1 extends Component {
 		if (this.props.clickable) {
 			//console.log(this.getState);
 			console.log('presionaron el color 1');
-			store.dispatch(updateInputs(0));
+			store2.dispatch(updateInputs(0));
 		}
 	};
 
@@ -363,7 +389,7 @@ class Color2 extends Component {
 	onClick = (item) => {
 		if (this.props.clickable) {
 			console.log('presionaron el color 2');
-			store.dispatch(updateInputs(1));
+			store2.dispatch(updateInputs(1));
 		}
 	};
 
@@ -382,7 +408,7 @@ class Color3 extends Component {
 	onClick = (item) => {
 		if (this.props.clickable) {
 			console.log('presionaron el color 3');
-			store.dispatch(updateInputs(2));
+			store2.dispatch(updateInputs(2));
 		}
 	};
 
@@ -401,7 +427,7 @@ class Color4 extends Component {
 	onClick = (item) => {
 		if (this.props.clickable) {
 			console.log('presionaron el color 4');
-			store.dispatch(updateInputs(3));
+			store2.dispatch(updateInputs(3));
 		}
 	};
 
